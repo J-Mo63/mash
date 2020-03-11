@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
                 _soldiersOnboard = 0;
                 _window.SetActive(false);
                 UpdateText();
+                CheckSoldiers();
                 break;
             case "Tree":
                 Time.timeScale = 0;
@@ -98,5 +99,15 @@ public class PlayerController : MonoBehaviour
     {
         soldiersOnboardText.text = _soldiersOnboard.ToString();
         soldiersSavedText.text = _soldiersSaved.ToString();
+    }
+    
+    private void CheckSoldiers()
+    {
+        if (GameObject.FindGameObjectsWithTag("Soldier").Length <= 0)
+        {
+            Time.timeScale = 0;
+            winText.SetActive(true);
+            _gameOverState = true;
+        }
     }
 }
