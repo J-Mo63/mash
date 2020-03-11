@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
     private GameObject _window;
+    
+    private int _soldiersOnboard = 0;
 
     private void Start()
     {
@@ -44,6 +46,22 @@ public class PlayerController : MonoBehaviour
             _window.transform.localPosition = new Vector3(
                 Math.Abs(_window.transform.localPosition.x) * windowOffset, 
                 0, 0);
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        switch (col.gameObject.tag)
+        {
+            case "Soldier":
+                if (_soldiersOnboard < 3)
+                {
+                    Destroy(col.gameObject);
+                    _soldiersOnboard++;
+                    if (_soldiersOnboard >= 3)
+                        _window.SetActive(true);
+                }
+                break;
         }
     }
 }
