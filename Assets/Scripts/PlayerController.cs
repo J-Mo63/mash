@@ -5,9 +5,11 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
+    private GameObject _window;
 
     private void Start()
     {
+        _window = transform.GetChild(0).gameObject;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
     }
@@ -37,6 +39,11 @@ public class PlayerController : MonoBehaviour
         {
             var isRight = direction == Vector3.right;
             _spriteRenderer.flipX = isRight;
+
+            var windowOffset = isRight ? 1 : -1;
+            _window.transform.localPosition = new Vector3(
+                Math.Abs(_window.transform.localPosition.x) * windowOffset, 
+                0, 0);
         }
     }
 }
