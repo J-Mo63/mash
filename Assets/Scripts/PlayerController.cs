@@ -68,6 +68,9 @@ public class PlayerController : MonoBehaviour
                 _soldiersOnboard = 0;
                 _window.SetActive(false);
                 break;
+            case "Tree":
+                print("LOSE");
+                break;
         }
     }
 }
