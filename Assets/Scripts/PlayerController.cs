@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private GameObject _window;
     
     private int _soldiersOnboard = 0;
+    private int _soldiersSaved = 0;
 
     private void Start()
     {
@@ -61,6 +62,11 @@ public class PlayerController : MonoBehaviour
                     if (_soldiersOnboard >= 3)
                         _window.SetActive(true);
                 }
+                break;
+            case "Building":
+                _soldiersSaved += _soldiersOnboard;
+                _soldiersOnboard = 0;
+                _window.SetActive(false);
                 break;
         }
     }
