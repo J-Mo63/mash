@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     private int _soldiersOnboard;
     private int _soldiersSaved;
+    private bool _gameOverState;
 
     private void Start()
     {
@@ -57,6 +58,12 @@ public class PlayerController : MonoBehaviour
                 Math.Abs(_window.transform.localPosition.x) * windowOffset, 
                 0, 0);
         }
+        
+        if(Input.GetKey(KeyCode.R) && _gameOverState)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Time.timeScale = 1;
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D col)
@@ -82,6 +89,7 @@ public class PlayerController : MonoBehaviour
             case "Tree":
                 Time.timeScale = 0;
                 lossText.SetActive(true);
+                _gameOverState = true;
                 break;
         }
     }
