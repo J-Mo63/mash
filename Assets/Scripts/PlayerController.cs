@@ -1,20 +1,25 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public Text soldiersOnboardText;
+    public Text soldiersSavedText;
+
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
     private GameObject _window;
-    
-    private int _soldiersOnboard = 0;
-    private int _soldiersSaved = 0;
+
+    private int _soldiersOnboard;
+    private int _soldiersSaved;
 
     private void Start()
     {
         _window = transform.GetChild(0).gameObject;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        UpdateText();
     }
 
     private void Update()
@@ -61,16 +66,24 @@ public class PlayerController : MonoBehaviour
                     _soldiersOnboard++;
                     if (_soldiersOnboard >= 3)
                         _window.SetActive(true);
+                    UpdateText();
                 }
                 break;
             case "Building":
                 _soldiersSaved += _soldiersOnboard;
                 _soldiersOnboard = 0;
                 _window.SetActive(false);
+                UpdateText();
                 break;
             case "Tree":
                 print("LOSE");
                 break;
         }
+    }
+
+    private void UpdateText()
+    {
+        soldiersOnboardText.text = _soldiersOnboard.ToString();
+        soldiersSavedText.text = _soldiersSaved.ToString();
     }
 }

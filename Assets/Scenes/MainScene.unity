@@ -835,6 +835,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411d1d04f8e7a42feaa990f3a56f4b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soldiersOnboardText: {fileID: 1658302585}
+  soldiersSavedText: {fileID: 930033334}
 --- !u!1 &930033332
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,7 +849,7 @@ GameObject:
   - component: {fileID: 930033335}
   - component: {fileID: 930033334}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: SoldiersSaved
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1747,7 +1749,7 @@ GameObject:
   - component: {fileID: 1658302586}
   - component: {fileID: 1658302585}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SoldiersOnboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
