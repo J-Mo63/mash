@@ -1,11 +1,15 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Text soldiersOnboardText;
     public Text soldiersSavedText;
+    
+    public GameObject winText;
+    public GameObject lossText;
 
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
@@ -76,7 +80,8 @@ public class PlayerController : MonoBehaviour
                 UpdateText();
                 break;
             case "Tree":
-                print("LOSE");
+                Time.timeScale = 0;
+                lossText.SetActive(true);
                 break;
         }
     }
