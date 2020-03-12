@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioClip soldierPickupSound;
+    public AudioClip soldierDropoffSound;
+    
     public Text soldiersOnboardText;
     public Text soldiersSavedText;
     
@@ -14,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
     private GameObject _window;
+    private AudioSource _audioSource;
 
     private int _soldiersOnboard;
     private int _soldiersSaved;
@@ -21,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        _audioSource = GetComponents<AudioSource>()[1];
         _window = transform.GetChild(0).gameObject;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -78,18 +83,24 @@ public class PlayerController : MonoBehaviour
                     if (_soldiersOnboard >= 3)
                         _window.SetActive(true);
                     UpdateText();
+                    PlaySound(soldierPickupSound);
                 }
                 break;
             case "Building":
-                _soldiersSaved += _soldiersOnboard;
-                _soldiersOnboard = 0;
-                _window.SetActive(false);
-                UpdateText();
-                CheckSoldiers();
+                if (_soldiersOnboard > 0)
+                {
+                    _soldiersSaved += _soldiersOnboard;
+                    _soldiersOnboard = 0;
+                    _window.SetActive(false);
+                    UpdateText();
+                    CheckSoldiers();
+                    PlaySound(soldierDropoffSound);
+                }
                 break;
             case "Tree":
                 Time.timeScale = 0;
                 lossText.SetActive(true);
+                StopSounds();
                 _gameOverState = true;
                 break;
         }
@@ -107,7 +118,20 @@ public class PlayerController : MonoBehaviour
         {
             Time.timeScale = 0;
             winText.SetActive(true);
+            StopSounds();
             _gameOverState = true;
         }
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        _audioSource.clip = clip;
+        _audioSource.Play();
+    }
+
+    private void StopSounds()
+    {
+        GetComponents<AudioSource>()[0].Stop();
+        GetComponents<AudioSource>()[0].Stop();
     }
 }
