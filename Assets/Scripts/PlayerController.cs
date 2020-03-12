@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
         }
         _rigidbody2D.AddForce(direction);
         
-        if (direction == Vector3.right || direction == Vector3.left)
+        if ((direction == Vector3.right || direction == Vector3.left) && !_gameOverState)
         {
             var isRight = direction == Vector3.right;
             _spriteRenderer.flipX = isRight;
