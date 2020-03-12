@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Soldier
+  - Background
+  - Building
+  - Tree
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -38,6 +43,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 3557345797
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Objects
+    uniqueID: 2719144157
+    locked: 0
+  - name: Player
+    uniqueID: 2298217511
     locked: 0
