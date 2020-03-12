@@ -8,6 +8,7 @@
       <e p="Assets" t="Include">
         <e p="Scripts" t="Include">
           <e p="Bullet.cs" t="Include" />
+          <e p="GameTimer.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="Tank.cs" t="Include" />
         </e>
