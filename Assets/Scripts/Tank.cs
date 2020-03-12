@@ -1,12 +1,13 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Tank : MonoBehaviour
 {
     public float speed;
+    public float maxMovement;
+    public float minMovement;
+    public GameObject bulletPrefab;
     private float _target = 0f;
     
     private void Start()
@@ -19,15 +20,15 @@ public class Tank : MonoBehaviour
         var position = transform.position;
         if (Math.Abs(position.x - _target) < 1)
         {
-            _target = Random.Range(-5, 8);
+            _target = Random.Range(minMovement, maxMovement);
         }
-        position = Vector2.MoveTowards(position, 
-            new Vector2(_target, position.y), speed * Time.deltaTime);
-        transform.position = position;
+        transform.position = Vector2.MoveTowards(position, new Vector2(_target, position.y), 
+            speed * Time.deltaTime);
     }
 
     private void Fire()
     {
-        print("fire!");
+        var position = transform.position;
+        Instantiate(bulletPrefab, new Vector3(position.x, position.y, position.z), Quaternion.identity);
     }
 }

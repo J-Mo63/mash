@@ -8,6 +8,7 @@ TagManager:
   - Background
   - Building
   - Tree
+  - Bullet
   layers:
   - Default
   - TransparentFX
