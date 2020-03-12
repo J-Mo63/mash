@@ -98,12 +98,21 @@ public class PlayerController : MonoBehaviour
                 }
                 break;
             case "Tree":
-                Time.timeScale = 0;
+                RunGameOver();
                 lossText.SetActive(true);
-                StopSounds();
-                _gameOverState = true;
+                break;
+            case "Bullet":
+                RunGameOver();
+                lossText.SetActive(true);
                 break;
         }
+    }
+
+    private void RunGameOver()
+    {
+        Time.timeScale = 0;
+        StopSounds();
+        _gameOverState = true;
     }
 
     private void UpdateText()
@@ -116,10 +125,8 @@ public class PlayerController : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("Soldier").Length <= 0)
         {
-            Time.timeScale = 0;
+            RunGameOver();
             winText.SetActive(true);
-            StopSounds();
-            _gameOverState = true;
         }
     }
 
